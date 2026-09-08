@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Events — Learning Lad School</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./images/learning lad logo.jpg">
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF5F0;
+            color: #333333;
+            line-height: 1.8;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ----- TOP UTILITY BAR ----- */
+        .top-bar {
+            background: #C9000A;
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .top-bar .search-form {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 4px 14px;
+        }
+        .top-bar .search-form input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 6px 8px;
+            outline: none;
+            width: 140px;
+            font-size: 0.85rem;
+        }
+        .top-bar .search-form input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        .top-bar .search-form button {
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .top-bar .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+        }
+        .top-bar .nav-menu a {
+            color: #fff;
+            transition: 0.3s;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .top-bar .nav-menu a:hover {
+            color: #FFB347;
+        }
+
+        /* ----- HEADER ----- */
+        .header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #F0E0D8;
+            padding: 12px 0;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .logo .logo-image {
+            height: 50px;
+            width: auto;
+        }
+        @media (max-width: 992px) {
+            .logo .logo-image {
+                height: 36px;
+            }
+        }
+        .logo .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo .logo-text .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #C9000A;
+            line-height: 1.1;
+        }
+        .logo .logo-text .tagline {
+            font-size: 0.85rem;
+            color: #E87722;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .main-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            font-weight: 600;
+            color: #C9000A;
+        }
+        .main-nav a {
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .main-nav a:hover {
+            color: #E87722;
+        }
+        .main-nav .has-dropdown {
+            position: relative;
+        }
+        .main-nav .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 210px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 100;
+            border: 1px solid #F0E0D8;
+        }
+        .main-nav .has-dropdown:hover .dropdown {
+            display: block;
+        }
+        .main-nav .dropdown li {
+            padding: 0;
+        }
+        .main-nav .dropdown a {
+            display: block;
+            padding: 8px 22px;
+            font-weight: 400;
+            color: #333333;
+            font-size: 0.9rem;
+        }
+        .main-nav .dropdown a:hover {
+            background: #FFF5F0;
+            color: #C9000A;
+        }
+
+        /* Nested dropdown */
+        .main-nav .dropdown .has-dropdown {
+            position: relative;
+        }
+        .main-nav .dropdown .nested-dropdown {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 101;
+            border: 1px solid #F0E0D8;
+        }
+        .main-nav .dropdown .has-dropdown:hover .nested-dropdown {
+            display: block;
+        }
+        .main-nav .dropdown .nested-dropdown a {
+            display: block;
+            padding: 8px 22px;
+            font-weight: 400;
+            color: #333333;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .main-nav .dropdown .nested-dropdown a:hover {
+            background: #FFF5F0;
+            color: #C9000A;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #C9000A;
+            cursor: pointer;
+        }
+
+        /* ----- PAGE HERO with RED OVERLAY ----- */
+        .page-hero {
+            position: relative;
+            background-image: url('https://www.greenspringsschool.com/wp-content/uploads/2015/12/lekki-path4.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 80px 0 70px;
+            color: #fff;
+            text-align: center;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(201, 0, 10, 0.65);
+            z-index: 1;
+        }
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .page-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+
+        /* ----- CONTENT LAYOUT (Blog/News) ----- */
+        .content-wrapper {
+            padding: 50px 0;
+        }
+        .content-wrapper .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .content-wrapper .main-col {
+            flex: 1 1 65%;
+            min-width: 300px;
+        }
+        .content-wrapper .sidebar-col {
+            flex: 1 1 25%;
+            min-width: 250px;
+        }
+
+        /* ----- NEWS POSTS (List View) ----- */
+        .stm-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .post-view-list {
+            background: #FFFFFF;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+            border: 1px solid #F0E0D8;
+            transition: 0.3s;
+        }
+        .post-view-list:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+            border-color: #E87722;
+        }
+        .post-view-list .entry-body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .post-view-list .entry-thumbnail-container {
+            flex: 0 0 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        .post-view-list .entry-thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: 0.3s;
+        }
+        .post-view-list:hover .entry-thumbnail-container img {
+            transform: scale(1.03);
+        }
+        .post-view-list .entry-thumbnail-container .post-categories {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .post-view-list .entry-thumbnail-container .post-categories li a {
+            background: #C9000A;
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+        .post-view-list .entry-thumbnail-container .post-categories li a:hover {
+            background: #E87722;
+        }
+        .post-view-list .entry-details-container {
+            flex: 1;
+            padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .post-view-list .entry-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #C9000A;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .post-view-list .entry-title a:hover {
+            color: #E87722;
+        }
+        .post-view-list .entry-summary {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 14px;
+            flex: 1;
+        }
+        .post-view-list .entry-summary p {
+            margin: 0;
+        }
+        .post-view-list .entry-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #999;
+            border-top: 1px solid #F0E0D8;
+            padding-top: 14px;
+        }
+        .post-view-list .entry-meta li {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .post-view-list .entry-meta i {
+            color: #E87722;
+        }
+
+        /* ----- PAGINATION ----- */
+        .pagination-wrap {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .pagination-wrap .page-numbers {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            padding: 0 12px;
+            border-radius: 8px;
+            border: 1px solid #F0E0D8;
+            background: #FFFFFF;
+            color: #333;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .pagination-wrap .page-numbers:hover {
+            border-color: #C9000A;
+            color: #C9000A;
+        }
+        .pagination-wrap .page-numbers.current {
+            background: #C9000A;
+            border-color: #C9000A;
+            color: #fff;
+        }
+        .pagination-wrap .page-numbers.dots {
+            border: none;
+            background: transparent;
+        }
+        .pagination-wrap .page-numbers.dots:hover {
+            border: none;
+            color: #333;
+        }
+        .pagination-wrap .page-numbers.next {
+            padding: 0 18px;
+        }
+
+        /* ----- SIDEBAR ----- */
+        .sidebar {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 30px 28px;
+            border: 1px solid #F0E0D8;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+        }
+        .sidebar .widget {
+            margin-bottom: 30px;
+        }
+        .sidebar .widget:last-child {
+            margin-bottom: 0;
+        }
+        .sidebar .widget-title {
+            color: #C9000A;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #F0E0D8;
+        }
+        .sidebar .recent-posts-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #F5F5F5;
+        }
+        .sidebar .recent-posts-list li:last-child {
+            border-bottom: none;
+        }
+        .sidebar .recent-posts-list li a {
+            color: #333;
+            transition: 0.3s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .sidebar .recent-posts-list li a:hover {
+            color: #C9000A;
+        }
+        .sidebar .sidebar-widget-img {
+            display: block;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 12px;
+            transition: 0.3s;
+        }
+        .sidebar .sidebar-widget-img:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background: #C9000A;
+            color: #FFE8E0;
+            padding: 50px 0 20px;
+        }
+        .footer .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer .grid h4 {
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+        }
+        .footer .grid ul li {
+            margin-bottom: 6px;
+            color: #FFE8E0;
+        }
+        .footer .grid ul li a {
+            color: #FFE8E0;
+            transition: 0.3s;
+        }
+        .footer .grid ul li a:hover {
+            color: #FFB347;
+        }
+        .footer .social {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .footer .social a {
+            color: #FFE8E0;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+        .footer .social a:hover {
+            color: #FFB347;
+        }
+        .footer .copyright {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #FFC8B8;
+        }
+
+        /* ----- MOBILE RESPONSIVE ----- */
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 16px 0;
+                gap: 10px;
+                border-top: 1px solid #F0E0D8;
+                margin-top: 12px;
+            }
+            .main-nav.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .page-hero {
+                padding: 60px 0 50px;
+                min-height: 250px;
+            }
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            .logo .logo-text .brand {
+                font-size: 1.4rem;
+            }
+            .content-wrapper .main-col,
+            .content-wrapper .sidebar-col {
+                flex: 1 1 100%;
+            }
+            .post-view-list .entry-thumbnail-container {
+                flex: 0 0 100%;
+                max-height: 250px;
+            }
+            .post-view-list .entry-thumbnail-container img {
+                min-height: 200px;
+            }
+            .post-view-list .entry-details-container {
+                padding: 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .top-bar .container {
+                justify-content: center;
+            }
+            .top-bar .nav-menu {
+                justify-content: center;
+                gap: 12px;
+            }
+            .page-hero {
+                padding: 50px 0 40px;
+                min-height: 200px;
+            }
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            .logo .logo-text .brand {
+                font-size: 1.2rem;
+            }
+            .logo .logo-text .tagline {
+                font-size: 0.7rem;
+            }
+            .post-view-list .entry-title {
+                font-size: 1.1rem;
+            }
+            .post-view-list .entry-thumbnail-container {
+                max-height: 200px;
+            }
+            .post-view-list .entry-thumbnail-container img {
+                min-height: 160px;
+            }
+            .post-view-list .entry-details-container {
+                padding: 16px;
+            }
+            .post-view-list .entry-meta {
+                flex-wrap: wrap;
+                gap: 10px;
+                font-size: 0.8rem;
+            }
+            .sidebar {
+                padding: 20px 18px;
+            }
+            .pagination-wrap .page-numbers {
+                min-width: 34px;
+                height: 34px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP UTILITY BAR -->
+<div class="top-bar">
+    <div class="container">
+        <div class="search-form">
+            <input type="text" placeholder="Search...">
+            <button><i class="fa fa-search"></i></button>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#">Alumni</a></li>
+            <li><a href="#">PTA</a></li>
+            <li><a href="#">Staff Mail</a></li>
+            <li><a href="#">GMC</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">IT Support</a></li>
+            <li><a href="#">Recruitment</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="./images/learning lad logo.jpg" alt="Learning Lad" class="logo-image">
+            <div class="logo-text">
+                <span class="brand">Learning Lad</span>
+                <span class="tagline">Montessori and High</span>
+            </div>
+        </a>
+        <div class="mobile-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+            <i class="fa fa-bars"></i>
+        </div>
+        <ul class="main-nav" id="mainNav">
+            <li><a href="home.html">Home</a></li>
+            <li class="has-dropdown">
+                <a href="#">About <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="about.html">History</a></li>
+                    <li><a href="leader.html">Leadership Team</a></li>
+                    <li><a href="executive.html">Executive Director</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Heads of School <i class="fa fa-angle-right"></i></a>
+                        <ul class="nested-dropdown">
+                            <li><a href="head-of-school-V.I-campus.html">Head of School V.I Campus</a></li>
+                            <li><a href="head-of-school-ikorodu-campus.html">Head of School Ikorodu Campus</a></li>
+                            <li><a href="head-of-school-ikoyi-campus.html">Head of School Ikoyi Campus</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="vision-mission-core Values.html">Vision | Mission | Core Values</a></li>
+                    <li><a href="#">School song and prayer</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Accreditation &amp; Affiliation</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Admissions <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="why-choose-us.html">Why Learning Lad?</a></li>
+                    <li><a href="admission-procedure.html">Admissions Procedure</a></li>
+                    <li><a href="tuition.html">Tuition &amp; Payment</a></li>
+                    <li><a href="#">Entrance Examination</a></li>
+                    <li><a href="#">Scholarship</a></li>
+                    <li><a href="#">Application Form</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Academics <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#">Key Dates</a></li>
+                    <li><a href="our-curriculum.html">Our Curriculum</a></li>
+                    <li><a href="creche.html">Creche</a></li>
+                    <li><a href="#">Pre School</a></li>
+                    <li><a href="#">Elementary</a></li>
+                    <li><a href="secondary-school.html">Secondary School</a></li>
+                    <li><a href="#">Sixth Form Programme</a></li>
+                    <li><a href="#">IB Diploma Programme</a></li>
+                    <li><a href="#">SAT</a></li>
+                    <li><a href="#">Learning Support</a></li>
+                    <li><a href="year-group-description.html">Year Group Description</a></li>
+                    <li><a href="e-learning.html">E-Learning</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Electives</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Downloadables</a></li>
+                </ul>
+            </li>
+            <li><a href="boarding.html">Boarding</a></li>
+            <li><a href="news and events.html" class="active">News &amp; Events</a></li>
+            <li class="has-dropdown">
+                <a href="#">Pay Fees <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="school-fees.html">School Fees</a></li>
+                    <li><a href="summer-school.html">Summer School</a></li>
+                    <li><a href="#">Kanu Football Camp</a></li>
+                    <li><a href="#">Other Payments</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<!-- PAGE HERO WITH RED OVERLAY -->
+<section class="page-hero">
+    <div class="container">
+        <h1>News &amp; Events</h1>
+    </div>
+</section>
+
+<!-- CONTENT WRAPPER -->
+<section class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <!-- Main Column - News Posts -->
+            <div class="main-col">
+                <div class="stm-posts">
+
+                    <!-- Post 1 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/09/image-12-700x480.jpeg" alt="Cape Town Leadership Trip 2026">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">Cape Town Leadership Trip 2026</a></h5>
+                                    <div class="entry-summary">
+                                        <p>The Leadership Development Trip to Cape Town, South Africa, took our students beyond the classroom and into an experience designed to challenge how they think, lead and work together. Across eight days, students participated in leadership and servant-leadership sessions, team challenges, adventure activities, environmental education, history and hands-on STEM learning.</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> September 1, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/09/image-9-700x480.jpeg" alt="Barcelona 2026">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">Barcelona 2026: Learning Beyond the Classroom</a></h5>
+                                    <div class="entry-summary">
+                                        <p>From 20–26 July 2026, our IB students took learning beyond the classroom as they immersed themselves in a rich blend of service, culture, creativity, adventure, and reflection as part of their 2026 CAS experience. From exploring the colourful architecture of Park Güell and the historic streets of the Gothic Quarter to discovering the symbolism of [&hellip;]</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> September 1, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/09/image-7-700x480.jpeg" alt="Duke of Edinburgh">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">Duke of Edinburgh International Award Expedition</a></h5>
+                                    <div class="entry-summary">
+                                        <p>From 26 July to 4 August 2026, 28 Greensprings students travelled to Leeds and Manchester, United Kingdom, for their Duke of Edinburgh International Award expedition, taking on the Adventurous Journey component of their Award. Before setting out, students prepared through equipment checks, meal and route planning, map-reading assessments and compass navigation exercises.</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> September 1, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 4 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/07/Image-1-700x480.jpg" alt="Global Milestone in London">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">Event</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">A Global Milestone in London!</a></h5>
+                                    <div class="entry-summary">
+                                        <p>What a spectacular way to wrap up the session this July! We are proud to celebrate our students who competed at the prestigious 2026 Young Master Challenge (Elizalde Competition) Finals in London and ranked in the Top 30 globally. Going head-to-head with the world's brightest young minds, our team proved that Greensprings students are built [&hellip;]</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> July 31, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 5 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/07/IMG_9735-700x480.jpg" alt="Public School Scholarship">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">Event</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">Expanding Horizons: Hosting Public School Scholarship Examination</a></h5>
+                                    <div class="entry-summary">
+                                        <p>In the spirit of celebrating memories &amp; milestones, Greensprings School is proud to mark another historic event! In partnership with the Lagos &amp; Ogun State Ministry of Education, we hosted another Public School Scholarship Examination, a major Corporate Social Responsibility (CSR) initiative designed to open doors of opportunity for top students in public schools across [&hellip;]</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> July 31, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 6 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="./images/LL at 40.jpg" alt="Memories that stay">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">Event</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">Looking Back: Memories that stay!</a></h5>
+                                    <div class="entry-summary">
+                                        <p>What a year it has been! As we gear up for the final stretch of our 41st anniversary session, looking back from September 2025 to July 2026 feels like flipping through a scrapbook packed with incredible Milestones &amp; Memories. We kicked off the new session with fresh energy, and boy, did the months fly by! [&hellip;]</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> July 31, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 7 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/06/IMG_0782-700x480.jpg" alt="IB Superstars">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">Event</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">Memories worth USD16BN: Our 2025/2026 IB Superstars</a></h5>
+                                    <div class="entry-summary">
+                                        <p>Talk about finishing the 2025/2026 session with a massive bang! The Greensprings School IB Diploma Programme graduating class didn't just make unforgettable memories this year; they literally secured the bag for their next academic chapters. This phenomenal cohort wrapped up their journey by pulling in a staggering total of USD16bn in global scholarships!</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> June 30, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 8 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/06/aso-47-of-48-700x480.jpg" alt="Milestones & Memories">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">Event</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">Milestones &amp; Memories: A Year of Growth</a></h5>
+                                    <div class="entry-summary">
+                                        <p>By: Mrs Akpan, AP Pastoral, Lekki Campus. September seems just like yesterday, students stepping into new classrooms carrying uncertainty about the new session, teachers wondering how best to support them. As the weeks went by, challenges emerged, academic struggles surfaced, and we had to dig deep wearing various thinking hats, trying new strategies and leaning [&hellip;]</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> June 30, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 9 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/06/image-38-500x480.png" alt="The Last Bell">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">Event</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">The Last Bell</a></h5>
+                                    <div class="entry-summary">
+                                        <p>By: Esther Alabi, 9 Juba, Lekki Campus. This year asked more than we expected and gave back more than we knew to want. A grade, a friendship, a version of ourselves we hadn't met in September. We learned that failure has a short memory if you refuse to give it the last word. [&hellip;]</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> June 30, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 10 -->
+                    <article class="post-view-list">
+                        <div class="entry-body">
+                            <div class="entry-thumbnail-container">
+                                <a href="#">
+                                    <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/06/unnamed-1.png" alt="Fun Zone">
+                                </a>
+                                <ul class="post-categories">
+                                    <li><a href="#">Event</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="entry-details-container">
+                                <div>
+                                    <h5 class="entry-title"><a href="#">Fun Zone - The Unofficial Parent of the Year Awards</a></h5>
+                                    <div class="entry-summary">
+                                        <p>The official Prize Giving Days are for the students, but we think our parents deserve a milestone award for the January - June stretch too! Check what badge you wear below: The WhatsApp Group Silence Medal: For the parent who manages to read all 40+ messages without sending a single accidental emoji or starting a [&hellip;]</p>
+                                    </div>
+                                </div>
+                                <ul class="entry-meta">
+                                    <li><i class="fa fa-clock-o"></i> June 30, 2026</li>
+                                    <li><i class="fa fa-commenting-o"></i> Comments Off</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-wrap">
+                    <span class="page-numbers current">1</span>
+                    <a href="#" class="page-numbers">2</a>
+                    <span class="page-numbers dots">&hellip;</span>
+                    <a href="#" class="page-numbers">52</a>
+                    <a href="#" class="page-numbers next">&rarr;</a>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar-col">
+                <div class="sidebar">
+                    <!-- Recent News Widget -->
+                    <div class="widget">
+                        <h4 class="widget-title">Recent News &amp; Articles</h4>
+                        <ul class="recent-posts-list">
+                            <li><a href="#">A Smooth Start to the New Term</a></li>
+                            <li><a href="#">Shout Out Central</a></li>
+                            <li><a href="#">Cape Town Leadership Trip 2026</a></li>
+                            <li><a href="#">Barcelona 2026: Learning Beyond the Classroom</a></li>
+                            <li><a href="#">Duke of Edinburgh International Award Expedition</a></li>
+                            <li><a href="#">A Global Milestone in London!</a></li>
+                            <li><a href="#">Expanding Horizons: Public School Scholarship</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Sidebar Images / Ads -->
+                    <div class="widget">
+                        <a href="#" class="sidebar-widget-img">
+                            <img src="https://www.greenspringsschool.com/wp-content/uploads/2019/03/Ikoyi-Campus-Widget.jpg" alt="Ikoyi Campus" style="width:100%; border-radius:8px;">
+                        </a>
+                        <br><br>
+                        <a href="#" class="sidebar-widget-img">
+                            <img src="https://www.greenspringsschool.com/wp-content/uploads/2019/04/anthos-online.jpg" alt="Anthos House" style="width:100%; border-radius:8px;">
+                        </a>
+                    </div>
+
+                    <!-- Categories Widget -->
+                    <div class="widget">
+                        <h4 class="widget-title">Categories</h4>
+                        <ul class="recent-posts-list">
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#">Student Life</a></li>
+                            <li><a href="#">Academic</a></li>
+                            <li><a href="#">Sports</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="grid">
+            <div>
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Leadership Team</a></li>
+                    <li><a href="#">Executive Director</a></li>
+                    <li><a href="#">Vision &amp; Mission</a></li>
+                    <li><a href="#">Accreditation</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Admission</a></li>
+                    <li><a href="#">Application Form</a></li>
+                    <li><a href="#">Curriculum</a></li>
+                    <li><a href="#">Tuition &amp; Payment</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><strong>V.I Campus:</strong> 32, Olatunde Ayoola Avenue, VI, Lagos</li>
+                    <li><strong>Ikorodu Campus:</strong> KM 40, Ikorodu-Epe Expressway, Awoyaya</li>
+                    <li><strong>Ikoyi Campus:</strong> 12a Reeve Road, Ikoyi, Lagos</li>
+                    <li><strong>Phone:</strong> +234 908 717 1700</li>
+                    <li><strong>Email:</strong> info@learninglad.com</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Follow Us</h4>
+                <div class="social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Learning Lad Educational Services Limited. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

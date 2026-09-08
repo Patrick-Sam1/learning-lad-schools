@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Fees — Learning Lad School</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="./images/learning lad logo.jpg">
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF5F0;
+            color: #333333;
+            line-height: 1.8;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ----- TOP UTILITY BAR ----- */
+        .top-bar {
+            background: #C9000A;
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .top-bar .search-form {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 4px 14px;
+        }
+        .top-bar .search-form input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 6px 8px;
+            outline: none;
+            width: 140px;
+            font-size: 0.85rem;
+        }
+        .top-bar .search-form input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        .top-bar .search-form button {
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .top-bar .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+        }
+        .top-bar .nav-menu a {
+            color: #fff;
+            transition: 0.3s;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .top-bar .nav-menu a:hover {
+            color: #FFB347;
+        }
+
+        /* ----- HEADER ----- */
+        .header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #F0E0D8;
+            padding: 12px 0;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .logo .logo-image {
+            height: 50px;
+            width: auto;
+        }
+        @media (max-width: 992px) {
+            .logo .logo-image {
+                height: 36px;
+            }
+        }
+        .logo .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo .logo-text .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #C9000A;
+            line-height: 1.1;
+        }
+        .logo .logo-text .tagline {
+            font-size: 0.85rem;
+            color: #E87722;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .main-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            font-weight: 600;
+            color: #C9000A;
+        }
+        .main-nav a {
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .main-nav a:hover {
+            color: #E87722;
+        }
+        .main-nav .has-dropdown {
+            position: relative;
+        }
+        .main-nav .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 210px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 100;
+            border: 1px solid #F0E0D8;
+        }
+        .main-nav .has-dropdown:hover .dropdown {
+            display: block;
+        }
+        .main-nav .dropdown li {
+            padding: 0;
+        }
+        .main-nav .dropdown a {
+            display: block;
+            padding: 8px 22px;
+            font-weight: 400;
+            color: #333333;
+            font-size: 0.9rem;
+        }
+        .main-nav .dropdown a:hover {
+            background: #FFF5F0;
+            color: #C9000A;
+        }
+
+        /* Nested dropdown */
+        .main-nav .dropdown .has-dropdown {
+            position: relative;
+        }
+        .main-nav .dropdown .nested-dropdown {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 101;
+            border: 1px solid #F0E0D8;
+        }
+        .main-nav .dropdown .has-dropdown:hover .nested-dropdown {
+            display: block;
+        }
+        .main-nav .dropdown .nested-dropdown a {
+            display: block;
+            padding: 8px 22px;
+            font-weight: 400;
+            color: #333333;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .main-nav .dropdown .nested-dropdown a:hover {
+            background: #FFF5F0;
+            color: #C9000A;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #C9000A;
+            cursor: pointer;
+        }
+
+        /* ----- PAGE HERO with RED OVERLAY ----- */
+        .page-hero {
+            position: relative;
+            background-image: url('https://www.greenspringsschool.com/wp-content/uploads/2017/11/Lekki-Secondary-6.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 80px 0 70px;
+            color: #fff;
+            text-align: center;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(201, 0, 10, 0.65);
+            z-index: 1;
+        }
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .page-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        }
+
+        /* ----- PAYMENT OPTIONS (BEFORE FORM) ----- */
+        .payment-options-section {
+            background: #FFF5F0;
+            padding: 50px 0;
+        }
+        .payment-options-section .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #C9000A;
+            margin-bottom: 8px;
+        }
+        .payment-options-section .divider {
+            width: 70px;
+            height: 3px;
+            background: #E87722;
+            margin: 8px auto 30px;
+            border-radius: 4px;
+        }
+        .payment-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .payment-option-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 30px 25px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+            border: 1px solid #F0E0D8;
+            transition: 0.3s;
+        }
+        .payment-option-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+            border-color: #E87722;
+        }
+        .payment-option-card .icon {
+            font-size: 2.4rem;
+            color: #C9000A;
+            margin-bottom: 12px;
+        }
+        .payment-option-card h3 {
+            font-size: 1.3rem;
+            color: #C9000A;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .payment-option-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+        .payment-option-card .bank-details {
+            background: #FFF5F0;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .payment-option-card .bank-details strong {
+            color: #C9000A;
+        }
+        .payment-option-card .location-details {
+            background: #FFF5F0;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .payment-option-card .location-details strong {
+            color: #C9000A;
+        }
+        .payment-option-card .other-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .payment-option-card .other-methods .method-btn {
+            background: #FFFFFF;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #C9000A;
+            border: 2px solid #C9000A;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .payment-option-card .other-methods .method-btn:hover {
+            background: #C9000A;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 0, 10, 0.25);
+        }
+        .payment-option-card .other-methods .method-btn i {
+            font-size: 1rem;
+        }
+
+        /* ----- QR CODE MODAL ----- */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        .qr-modal.active {
+            display: flex;
+        }
+        .qr-modal-content {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 40px 45px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .qr-modal-content .close-modal {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #999;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .qr-modal-content .close-modal:hover {
+            color: #C9000A;
+        }
+        .qr-modal-content h3 {
+            font-size: 1.6rem;
+            color: #C9000A;
+            margin-bottom: 8px;
+        }
+        .qr-modal-content p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .qr-modal-content .qr-image-wrapper {
+            background: #FFFFFF;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #F0E0D8;
+            display: inline-block;
+            margin: 0 auto;
+        }
+        .qr-modal-content .qr-image-wrapper img {
+            max-width: 250px;
+            height: auto;
+            display: block;
+        }
+        .qr-modal-content .qr-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .qr-modal-content .qr-actions button {
+            padding: 10px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .qr-modal-content .qr-actions .btn-download {
+            background: #C9000A;
+            color: #fff;
+            border: 2px solid #C9000A;
+        }
+        .qr-modal-content .qr-actions .btn-download:hover {
+            background: #A80008;
+            border-color: #A80008;
+        }
+        .qr-modal-content .qr-actions .btn-close {
+            background: transparent;
+            color: #666;
+            border: 2px solid #DCDCDC;
+        }
+        .qr-modal-content .qr-actions .btn-close:hover {
+            background: #F5F5F5;
+            border-color: #999;
+        }
+
+        /* ----- PAYMENT FORM ----- */
+        .payment-section {
+            background: #FFFFFF;
+            padding: 50px 0;
+        }
+        .payment-form-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #F0E0D8;
+            padding: 40px 45px;
+        }
+        .payment-form-wrapper .form-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #C9000A;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #F0E0D8;
+        }
+        .payment-form-wrapper .form-group {
+            margin-bottom: 22px;
+            position: relative;
+        }
+        .payment-form-wrapper .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333333;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+        .payment-form-wrapper .form-group label .required-star {
+            color: #C9000A;
+            font-weight: 700;
+            margin-left: 2px;
+        }
+        .payment-form-wrapper .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: 0.3s;
+            background: #FAFAFA;
+            font-family: 'Inter', sans-serif;
+        }
+        .payment-form-wrapper .form-group input:focus {
+            outline: none;
+            border-color: #C9000A;
+            box-shadow: 0 0 0 3px rgba(201, 0, 10, 0.1);
+            background: #FFFFFF;
+        }
+        .payment-form-wrapper .form-group input.error {
+            border-color: #C9000A;
+            background: #FFF5F0;
+            box-shadow: 0 0 0 3px rgba(201, 0, 10, 0.15);
+        }
+        .payment-form-wrapper .form-group .error-message {
+            display: none;
+            color: #C9000A;
+            font-size: 0.85rem;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+        .payment-form-wrapper .form-group .error-message.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .payment-form-wrapper .form-group .validation-msg {
+            margin-top: 6px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .payment-form-wrapper .form-group .validation-msg .student-name {
+            font-weight: 600;
+            color: #C9000A;
+        }
+        .payment-form-wrapper .form-group .small-note {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 4px;
+            display: block;
+        }
+        .payment-form-wrapper .required-note {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 18px;
+        }
+        .payment-form-wrapper .required-note span {
+            color: #C9000A;
+            font-weight: 700;
+        }
+        .payment-form-wrapper .btn-pay {
+            width: 100%;
+            padding: 14px;
+            background: #C9000A;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .payment-form-wrapper .btn-pay:hover {
+            background: #A80008;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 0, 10, 0.3);
+        }
+        .payment-form-wrapper .btn-pay:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Spinner */
+        .rave-form-spinner-container {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .rave-form-spinner {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            border: 4px solid #F0E0D8;
+            border-top: 4px solid #C9000A;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background: #C9000A;
+            color: #FFE8E0;
+            padding: 50px 0 20px;
+        }
+        .footer .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer .grid h4 {
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+        }
+        .footer .grid ul li {
+            margin-bottom: 6px;
+            color: #FFE8E0;
+        }
+        .footer .grid ul li a {
+            color: #FFE8E0;
+            transition: 0.3s;
+        }
+        .footer .grid ul li a:hover {
+            color: #FFB347;
+        }
+        .footer .social {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .footer .social a {
+            color: #FFE8E0;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+        .footer .social a:hover {
+            color: #FFB347;
+        }
+        .footer .copyright {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #FFC8B8;
+        }
+
+        /* ----- MOBILE RESPONSIVE ----- */
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 16px 0;
+                gap: 10px;
+                border-top: 1px solid #F0E0D8;
+                margin-top: 12px;
+            }
+            .main-nav.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .page-hero {
+                padding: 60px 0 50px;
+                min-height: 250px;
+            }
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            .logo .logo-text .brand {
+                font-size: 1.4rem;
+            }
+            .payment-form-wrapper {
+                padding: 30px 25px;
+            }
+            .payment-options-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            .qr-modal-content {
+                padding: 30px 25px;
+            }
+            .qr-modal-content .qr-image-wrapper img {
+                max-width: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .top-bar .container {
+                justify-content: center;
+            }
+            .top-bar .nav-menu {
+                justify-content: center;
+                gap: 12px;
+            }
+            .page-hero {
+                padding: 50px 0 40px;
+                min-height: 200px;
+            }
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            .logo .logo-text .brand {
+                font-size: 1.2rem;
+            }
+            .logo .logo-text .tagline {
+                font-size: 0.7rem;
+            }
+            .payment-form-wrapper {
+                padding: 20px 18px;
+            }
+            .payment-form-wrapper .form-title {
+                font-size: 1.5rem;
+            }
+            .payment-form-wrapper .form-group input {
+                padding: 10px 14px;
+                font-size: 0.95rem;
+            }
+            .payment-options-section .section-title {
+                font-size: 1.6rem;
+            }
+            .payment-option-card {
+                padding: 22px 18px;
+            }
+            .payment-option-card .other-methods .method-btn {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+            .qr-modal-content {
+                padding: 25px 18px;
+            }
+            .qr-modal-content .qr-image-wrapper img {
+                max-width: 160px;
+            }
+            .qr-modal-content h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP UTILITY BAR -->
+<div class="top-bar">
+    <div class="container">
+        <div class="search-form">
+            <input type="text" placeholder="Search...">
+            <button><i class="fa fa-search"></i></button>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#">Alumni</a></li>
+            <li><a href="#">PTA</a></li>
+            <li><a href="#">Staff Mail</a></li>
+            <li><a href="#">GMC</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">IT Support</a></li>
+            <li><a href="#">Recruitment</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="./images/learning lad logo.jpg" alt="Learning Lad" class="logo-image">
+            <div class="logo-text">
+                <span class="brand">Learning Lad</span>
+                <span class="tagline">Montessori and High</span>
+            </div>
+        </a>
+        <div class="mobile-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+            <i class="fa fa-bars"></i>
+        </div>
+        <ul class="main-nav" id="mainNav">
+            <li><a href="home.html">Home</a></li>
+            <li class="has-dropdown">
+                <a href="#">About <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="about.html">History</a></li>
+                    <li><a href="leader.html">Leadership Team</a></li>
+                    <li><a href="executive.html">Executive Director</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Heads of School <i class="fa fa-angle-right"></i></a>
+                        <ul class="nested-dropdown">
+                            <li><a href="head-of-school-V.I-campus.html">Head of School V.I Campus</a></li>
+                            <li><a href="head-of-school-ikorodu-campus.html">Head of School Ikorodu Campus</a></li>
+                            <li><a href="head-of-school-ikoyi-campus.html">Head of School Ikoyi Campus</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="vision-mission-core Values.html">Vision | Mission | Core Values</a></li>
+                    <li><a href="#">School song and prayer</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Accreditation &amp; Affiliation</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Admissions <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="why-choose-us.html">Why Learning Lad?</a></li>
+                    <li><a href="admission-procedure.html">Admissions Procedure</a></li>
+                    <li><a href="tuition.html">Tuition &amp; Payment</a></li>
+                    <li><a href="#">Entrance Examination</a></li>
+                    <li><a href="#">Scholarship</a></li>
+                    <li><a href="#">Application Form</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Academics <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#">Key Dates</a></li>
+                    <li><a href="our-curriculum.html">Our Curriculum</a></li>
+                    <li><a href="creche.html">Creche</a></li>
+                    <li><a href="#">Pre School</a></li>
+                    <li><a href="#">Elementary</a></li>
+                    <li><a href="secondary-school.html">Secondary School</a></li>
+                    <li><a href="#">Sixth Form Programme</a></li>
+                    <li><a href="#">IB Diploma Programme</a></li>
+                    <li><a href="#">SAT</a></li>
+                    <li><a href="#">Learning Support</a></li>
+                    <li><a href="year-group-description.html">Year Group Description</a></li>
+                    <li><a href="e-learning.html">E-Learning</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Electives</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Downloadables</a></li>
+                </ul>
+            </li>
+            <li><a href="boarding.html">Boarding</a></li>
+            <li><a href="news and events.html">News &amp; Events</a></li>
+            <li class="has-dropdown">
+                <a href="#" class="active">Pay Fees <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="school-fees.html" style="color:#C9000A; font-weight:600;">School Fees</a></li>
+                    <li><a href="summer-school.html">Summer School</a></li>
+                    <li><a href="#">Kanu Football Camp</a></li>
+                    <li><a href="#">Other Payments</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<!-- PAGE HERO WITH RED OVERLAY -->
+<section class="page-hero">
+    <div class="container">
+        <h1>School Fees</h1>
+    </div>
+</section>
+
+<!-- PAYMENT OPTIONS SECTION (BEFORE FORM) -->
+<section class="payment-options-section">
+    <div class="container">
+        <h2 class="section-title">Choose Your Payment Method</h2>
+        <div class="divider"></div>
+
+        <div class="payment-options-grid">
+            <!-- Bank Transfer -->
+            <div class="payment-option-card">
+                <div class="icon"><i class="fa fa-university"></i></div>
+                <h3>Bank Transfer</h3>
+                <p>Make a direct bank transfer to our account. Use your Student ID as payment reference.</p>
+                <div class="bank-details">
+                    <p><strong>Bank:</strong> First Bank of Nigeria</p>
+                    <p><strong>Account Name:</strong> Learning Lad School</p>
+                    <p><strong>Account Number:</strong> 2023456789</p>
+                    <p><strong>Reference:</strong> Student ID + Full Name</p>
+                </div>
+            </div>
+
+            <!-- Cash Payment -->
+            <div class="payment-option-card">
+                <div class="icon"><i class="fa fa-money"></i></div>
+                <h3>Cash Payment</h3>
+                <p>Visit any of our school campuses to make cash payments at the Bursary/Accounts department.</p>
+                <div class="location-details">
+                    <p><strong><i class="fa fa-map-marker"></i> V.I Campus:</strong> 32, Olatunde Ayoola Avenue, VI, Lagos</p>
+                    <p><strong><i class="fa fa-map-marker"></i> Ikorodu Campus:</strong> KM 40, Ikorodu-Epe Expressway, Awoyaya</p>
+                    <p><strong><i class="fa fa-map-marker"></i> Ikoyi Campus:</strong> 12a Reeve Road, Ikoyi, Lagos</p>
+                    <p><strong>Office Hours:</strong> Mon–Fri, 8:00 AM – 4:00 PM</p>
+                </div>
+            </div>
+
+            <!-- Other Payment Methods (with buttons) -->
+            <div class="payment-option-card">
+                <div class="icon"><i class="fa fa-credit-card"></i></div>
+                <h3>Other Payment Methods</h3>
+                <p>Choose from our secure payment options below:</p>
+                <div class="other-methods">
+                    <button class="method-btn" onclick="alert('POS payment selected. Visit any of our campuses to pay with POS.')">
+                        <i class="fa fa-credit-card"></i> POS
+                    </button>
+                    <button class="method-btn" onclick="alert('USSD payment selected. Dial *123*456# to complete payment.')">
+                        <i class="fa fa-mobile"></i> USSD
+                    </button>
+                    <button class="method-btn" onclick="generateQRCode()">
+                        <i class="fa fa-qrcode"></i> QR Code
+                    </button>
+                    <button class="method-btn" onclick="alert('PayPal payment selected. You will be redirected to PayPal.')">
+                        <i class="fa fa-paypal"></i> PayPal
+                    </button>
+                    <button class="method-btn" onclick="alert('Wallet payment selected. Use your preferred wallet app.')">
+                        <i class="fa fa-wallet"></i> Wallet
+                    </button>
+                </div>
+                <p style="margin-top: 14px; font-size: 0.9rem; color: #888;">
+                    <strong>Need help?</strong> Contact our accounts department:
+                    <br><i class="fa fa-envelope"></i> accounts@learninglad.com
+                    <br><i class="fa fa-phone"></i> +234 908 717 1700
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QR CODE MODAL -->
+<div class="qr-modal" id="qrModal">
+    <div class="qr-modal-content">
+        <button class="close-modal" onclick="closeQRModal()">&times;</button>
+        <h3><i class="fa fa-qrcode" style="color:#C9000A;"></i> Scan to Pay</h3>
+        <p>Scan this QR code with your banking app to make a secure payment</p>
+        <div class="qr-image-wrapper">
+            <img id="qrCodeImage" src="" alt="QR Code for Payment">
+        </div>
+        <div class="qr-actions">
+            <button class="btn-download" onclick="downloadQR()"><i class="fa fa-download"></i> Download QR</button>
+            <button class="btn-close" onclick="closeQRModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- PAYMENT FORM SECTION -->
+<section class="payment-section">
+    <div class="container">
+        <div class="payment-form-wrapper">
+            <div class="form-title">School Fees Payment</div>
+
+            <form id="paymentForm" class="payment-form" method="post" novalidate>
+                <!-- Full Name -->
+                <div class="form-group" id="group-fullName">
+                    <label for="fullName">Full Name (Payer's Name) <span class="required-star">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    <div class="error-message" id="error-fullName">Please enter your full name</div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group" id="group-email">
+                    <label for="email">Email <span class="required-star">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    <div class="error-message" id="error-email">Please enter a valid email address</div>
+                </div>
+
+                <!-- Amount -->
+                <div class="form-group" id="group-amount">
+                    <label for="amount">Amount (NGN) <span class="required-star">*</span></label>
+                    <input type="text" id="amount" name="amount" placeholder="Enter amount" required>
+                    <div class="error-message" id="error-amount">Please enter the amount</div>
+                </div>
+
+                <!-- Student ID -->
+                <div class="form-group" id="group-studentId">
+                    <label for="studentId">Student ID <span class="required-star">*</span></label>
+                    <input type="text" id="studentId" name="studentId" placeholder="Enter Student ID" required>
+                    <div class="validation-msg">
+                        Student Name: <span class="student-name" id="studentNameDisplay">—</span>
+                    </div>
+                    <small class="small-note">Enter Student ID to validate</small>
+                    <div class="error-message" id="error-studentId">Please enter your Student ID</div>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-group" id="group-phone">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+                </div>
+
+                <!-- Required Note -->
+                <div class="required-note">
+                    <span>*</span> are compulsory
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-pay" id="payButton">Pay Now</button>
+            </form>
+
+            <!-- Spinner -->
+            <div class="rave-form-spinner-container" id="spinnerContainer">
+                <div class="rave-form-spinner"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="grid">
+            <div>
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Leadership Team</a></li>
+                    <li><a href="#">Executive Director</a></li>
+                    <li><a href="#">Vision &amp; Mission</a></li>
+                    <li><a href="#">Accreditation</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Admission</a></li>
+                    <li><a href="#">Application Form</a></li>
+                    <li><a href="#">Curriculum</a></li>
+                    <li><a href="#">Tuition &amp; Payment</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><strong>V.I Campus:</strong> 32, Olatunde Ayoola Avenue, VI, Lagos</li>
+                    <li><strong>Ikorodu Campus:</strong> KM 40, Ikorodu-Epe Expressway, Awoyaya</li>
+                    <li><strong>Ikoyi Campus:</strong> 12a Reeve Road, Ikoyi, Lagos</li>
+                    <li><strong>Phone:</strong> +234 908 717 1700</li>
+                    <li><strong>Email:</strong> info@learninglad.com</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Follow Us</h4>
+                <div class="social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Learning Lad Educational Services Limited. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ----- QR CODE GENERATION -----
+    function generateQRCode() {
+        const modal = document.getElementById('qrModal');
+        const qrImage = document.getElementById('qrCodeImage');
+        
+        const accountName = 'Learning Lad School';
+        const accountNumber = '2023456789';
+        const bankName = 'First Bank';
+        const amount = document.getElementById('amount').value || '0';
+        const studentId = document.getElementById('studentId').value || 'STU001';
+        
+        const paymentData = `Pay to: ${accountName}\nBank: ${bankName}\nAccount: ${accountNumber}\nAmount: NGN ${amount}\nStudent ID: ${studentId}`;
+        const encodedData = encodeURIComponent(paymentData);
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodedData}&bgcolor=ffffff&color=C9000A&margin=10`;
+        
+        qrImage.src = qrUrl;
+        qrImage.alt = 'QR Code for Payment';
+        qrImage.dataset.qrData = qrUrl;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeQRModal() {
+        const modal = document.getElementById('qrModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function downloadQR() {
+        const qrImage = document.getElementById('qrCodeImage');
+        const link = document.createElement('a');
+        link.download = 'LearningLad_Payment_QR.png';
+        link.href = qrImage.src;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    document.getElementById('qrModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeQRModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeQRModal();
+        }
+    });
+
+    // ----- FRIENDLY SUCCESS MESSAGE (Option 1 - Friendly & Warm) -----
+    function showPaymentSuccess(fullName, studentName, studentId, amount, email) {
+        const transactionId = generateTransactionId();
+        
+        Swal.fire({
+            icon: 'success',
+            title: '🎉 Payment Successful!',
+            text: 'Thank you for your payment! We\'re excited to have you back. Wishing you a wonderful and successful term ahead! 🍀',
+            confirmButtonColor: '#C9000A',
+            confirmButtonText: '🎒 Back to School'
+        });
+    }
+
+    function generateTransactionId() {
+        const prefix = 'LL';
+        const timestamp = Date.now().toString().slice(-6);
+        const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+        return `${prefix}${timestamp}${random}`;
+    }
+
+    // ----- FORM VALIDATION -----
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Reset all error states
+        document.querySelectorAll('.form-group input').forEach(function(input) {
+            input.classList.remove('error');
+        });
+        document.querySelectorAll('.error-message').forEach(function(msg) {
+            msg.classList.remove('show');
+        });
+
+        let hasError = false;
+        let firstErrorGroup = null;
+
+        // Validate Full Name
+        const fullName = document.getElementById('fullName').value.trim();
+        if (!fullName) {
+            document.getElementById('group-fullName').querySelector('input').classList.add('error');
+            document.getElementById('error-fullName').classList.add('show');
+            hasError = true;
+            if (!firstErrorGroup) firstErrorGroup = document.getElementById('group-fullName');
+        }
+
+        // Validate Email
+        const email = document.getElementById('email').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            document.getElementById('group-email').querySelector('input').classList.add('error');
+            document.getElementById('error-email').classList.add('show');
+            hasError = true;
+            if (!firstErrorGroup) firstErrorGroup = document.getElementById('group-email');
+        }
+
+        // Validate Amount
+        const amount = document.getElementById('amount').value.trim();
+        if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+            document.getElementById('group-amount').querySelector('input').classList.add('error');
+            document.getElementById('error-amount').classList.add('show');
+            hasError = true;
+            if (!firstErrorGroup) firstErrorGroup = document.getElementById('group-amount');
+        }
+
+        // Validate Student ID
+        const studentId = document.getElementById('studentId').value.trim();
+        if (!studentId) {
+            document.getElementById('group-studentId').querySelector('input').classList.add('error');
+            document.getElementById('error-studentId').classList.add('show');
+            hasError = true;
+            if (!firstErrorGroup) firstErrorGroup = document.getElementById('group-studentId');
+        }
+
+        // Get student name from display
+        const studentNameDisplay = document.getElementById('studentNameDisplay');
+        const studentName = studentNameDisplay.textContent !== '—' ? studentNameDisplay.textContent : 'Student';
+
+        // If there's an error, scroll to the first error and focus
+        if (hasError && firstErrorGroup) {
+            const input = firstErrorGroup.querySelector('input');
+            firstErrorGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(function() {
+                input.focus();
+            }, 500);
+            return;
+        }
+
+        // If no errors, proceed with payment
+        document.getElementById('spinnerContainer').style.display = 'block';
+        document.getElementById('payButton').disabled = true;
+        document.getElementById('payButton').textContent = 'Processing...';
+
+        setTimeout(function() {
+            document.getElementById('spinnerContainer').style.display = 'none';
+            document.getElementById('payButton').disabled = false;
+            document.getElementById('payButton').textContent = 'Pay Now';
+            
+            // Show friendly success message
+            showPaymentSuccess(fullName, studentName, studentId, amount, email);
+        }, 2000);
+    });
+
+    // Student ID validation simulation
+    document.getElementById('studentId').addEventListener('input', function() {
+        const id = this.value.trim();
+        const nameDisplay = document.getElementById('studentNameDisplay');
+
+        if (id.length >= 3) {
+            const names = ['John Doe', 'Jane Smith', 'Michael Johnson', 'Sarah Williams', 'David Brown', 'Amanda Lee', 'Robert Chen'];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            nameDisplay.textContent = randomName;
+            nameDisplay.style.color = '#C9000A';
+        } else {
+            nameDisplay.textContent = '—';
+            nameDisplay.style.color = '#333';
+        }
+    });
+
+    // Remove error state on input
+    document.querySelectorAll('.form-group input').forEach(function(input) {
+        input.addEventListener('input', function() {
+            this.classList.remove('error');
+            const group = this.closest('.form-group');
+            if (group) {
+                const errorMsg = group.querySelector('.error-message');
+                if (errorMsg) {
+                    errorMsg.classList.remove('show');
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

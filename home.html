@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Lad — Leading British International School in Lagos</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./images/learning lad logo.jpg">
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF5F0;
+            color: #333333;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: #C9000A;
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border: 2px solid #C9000A;
+        }
+        .btn:hover {
+            background: #A80008;
+            border-color: #A80008;
+            color: #fff;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #C9000A;
+            border: 2px solid #C9000A;
+        }
+        .btn-outline:hover {
+            background: #C9000A;
+            color: #fff;
+        }
+        .btn-orange {
+            background: #E87722;
+            border-color: #E87722;
+        }
+        .btn-orange:hover {
+            background: #C9000A;
+            border-color: #C9000A;
+            color: #fff;
+        }
+
+        /* ----- TOP UTILITY BAR ----- */
+        .top-bar {
+            background: #C9000A;
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .top-bar .search-form {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 4px 14px;
+        }
+        .top-bar .search-form input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 6px 8px;
+            outline: none;
+            width: 140px;
+            font-size: 0.85rem;
+        }
+        .top-bar .search-form input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        .top-bar .search-form button {
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .top-bar .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+        }
+        .top-bar .nav-menu a {
+            color: #fff;
+            transition: 0.3s;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .top-bar .nav-menu a:hover {
+            color: #FFB347;
+        }
+
+        /* ----- HEADER ----- */
+        .header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #F0E0D8;
+            padding: 12px 0;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .logo .logo-image {
+            height: 50px;
+            width: auto;
+        }
+        @media (max-width: 992px) {
+        .logo .logo-image {
+        height: 36px;
+        }
+        }  
+        .logo .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: #C9000A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFB347;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .logo .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo .logo-text .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #C9000A;
+            line-height: 1.1;
+        }
+        .logo .logo-text .tagline {
+            font-size: 0.85rem;
+            color: #E87722;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .main-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            font-weight: 600;
+            color: #C9000A;
+        }
+        .main-nav a {
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .main-nav a:hover {
+            color: #E87722;
+        }
+        .main-nav .has-dropdown {
+            position: relative;
+        }
+        .main-nav .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 210px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 100;
+            border: 1px solid #F0E0D8;
+        }
+        .main-nav .has-dropdown:hover .dropdown {
+            display: block;
+        }
+        .main-nav .dropdown li {
+            padding: 0;
+        }
+        .main-nav .dropdown a {
+            display: block;
+            padding: 8px 22px;
+            font-weight: 400;
+            color: #333333;
+            font-size: 0.9rem;
+        }
+        .main-nav .dropdown a:hover {
+            background: #FFF5F0;
+            color: #C9000A;
+        }
+
+                /* ----- NESTED DROPDOWN (Heads of School) ----- */
+        .main-nav .dropdown .has-dropdown {
+            position: relative;
+        }
+        .main-nav .dropdown .nested-dropdown {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 101;
+            border: 1px solid #F0E0D8;
+        }
+        .main-nav .dropdown .has-dropdown:hover .nested-dropdown {
+            display: block;
+        }
+        .main-nav .dropdown .nested-dropdown a {
+            display: block;
+            padding: 8px 22px;
+            font-weight: 400;
+            color: #333333;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .main-nav .dropdown .nested-dropdown a:hover {
+            background: #FFF5F0;
+            color: #C9000A;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #C9000A;
+            cursor: pointer;
+        }
+
+        /* ----- HERO SLIDER (Background Images) ----- */
+        .hero-slider {
+            position: relative;
+            color: #fff;
+            height: 500px;
+            overflow: hidden;
+        }
+        .hero-slider .slide {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: fade 0.6s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .hero-slider .slide.active {
+            display: block;
+        }
+        @keyframes fade {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        .hero-slider .slide .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(201, 0, 10, 0.60);
+        }
+        .hero-slider .slide .slide-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            height: 100%;
+            padding: 40px 0;
+        }
+        .hero-slider .slide .text {
+            flex: 1 1 300px;
+            max-width: 600px;
+        }
+        .hero-slider .slide .text h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: #FFFFFF;
+        }
+        .hero-slider .slide .text p {
+            font-size: 1.1rem;
+            color: #FFE8E0;
+            margin-bottom: 20px;
+        }
+        .hero-slider .controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            gap: 12px;
+        }
+        .hero-slider .controls button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.3s;
+            backdrop-filter: blur(4px);
+        }
+        .hero-slider .controls button:hover {
+            background: #E87722;
+            color: #fff;
+        }
+
+        /* ----- SECTION TITLES ----- */
+        .section-title {
+            text-align: center;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #C9000A;
+            margin-bottom: 8px;
+        }
+        .section-title-white {
+            color: #FFFFFF;
+        }
+        .divider {
+            width: 70px;
+            height: 3px;
+            background: #E87722;
+            margin: 8px auto 30px;
+            border-radius: 4px;
+        }
+        .divider-white {
+            background: #FFB347;
+        }
+
+        /* ----- FEATURED NEWS ----- */
+        .section-white {
+            background: #FFFFFF;
+            padding: 40px 0;
+        }
+        .section-light {
+            background: #FFF5F0;
+            padding: 40px 0;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+        .news-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+            border: 1px solid #F0E0D8;
+            transition: 0.25s;
+        }
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+            border-color: #E87722;
+        }
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .news-card .body {
+            padding: 16px 18px 20px;
+        }
+        .news-card .body h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #C9000A;
+        }
+        .news-card .body .meta {
+            color: #E87722;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+        }
+        .news-card .body p {
+            font-size: 0.95rem;
+            color: #333333;
+            margin-bottom: 14px;
+        }
+        .news-card .body a {
+            color: #C9000A;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .news-card .body a i {
+            margin-left: 6px;
+            transition: 0.3s;
+        }
+        .news-card .body a:hover i {
+            transform: translateX(4px);
+        }
+        .news-card .body a:hover {
+            color: #E87722;
+        }
+
+        /* ----- ACADEMICS ----- */
+        .academics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 30px 0 20px;
+        }
+        .academic-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+            border: 1px solid #F0E0D8;
+            transition: 0.25s;
+        }
+        .academic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+            border-color: #E87722;
+        }
+        .academic-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+        .academic-card .info {
+            padding: 16px 18px 20px;
+        }
+        .academic-card .info h4 {
+            font-size: 1.2rem;
+            color: #C9000A;
+            margin-bottom: 6px;
+        }
+        .academic-card .info p {
+            font-size: 0.9rem;
+            color: #333333;
+            margin-bottom: 12px;
+        }
+        .academic-card .info a {
+            color: #C9000A;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .academic-card .info a:hover {
+            color: #E87722;
+        }
+
+        /* ----- STATS ----- */
+        .stats-section {
+            background: #C9000A;
+            color: #fff;
+            padding: 60px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .stats-grid .stat h3 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #FFB347;
+        }
+        .stats-grid .stat p {
+            opacity: 0.85;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: #FFFFFF;
+        }
+
+        /* ----- TESTIMONIALS ----- */
+        .testimonials {
+            background: #FFF5F0;
+            padding: 50px 0;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        .testimonial-item {
+            background: #FFFFFF;
+            padding: 24px 22px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border-left: 4px solid #E87722;
+        }
+        .testimonial-item p {
+            font-style: italic;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+        .testimonial-item .author {
+            font-weight: 700;
+            color: #C9000A;
+        }
+
+        /* ----- REDEFINING EDUCATION ----- */
+        .redefine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .redefine-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+            border: 1px solid #F0E0D8;
+            transition: 0.25s;
+        }
+        .redefine-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+            border-color: #E87722;
+        }
+        .redefine-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        .redefine-card .info {
+            padding: 16px 18px 20px;
+        }
+        .redefine-card .info h4 {
+            font-size: 1.1rem;
+            color: #C9000A;
+            margin-bottom: 6px;
+        }
+        .redefine-card .info p {
+            font-size: 0.9rem;
+            color: #333333;
+            margin-bottom: 12px;
+        }
+        .redefine-card .info a {
+            color: #C9000A;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .redefine-card .info a:hover {
+            color: #E87722;
+        }
+
+        /* ----- SUBSCRIBE SECTION ----- */
+        .subscribe-section {
+            background: #C9000A;
+            color: #fff;
+            padding: 50px 0;
+        }
+        .subscribe-section .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+        .subscribe-section .text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+        }
+        .subscribe-section .text p {
+            opacity: 0.85;
+            color: #FFE8E0;
+        }
+        .subscribe-section .form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .subscribe-section .form input {
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            min-width: 220px;
+            font-size: 0.95rem;
+            background: #FFFFFF;
+            color: #333333;
+        }
+        .subscribe-section .form input::placeholder {
+            color: #999999;
+        }
+        .subscribe-section .form button {
+            background: #E87722;
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .subscribe-section .form button:hover {
+            background: #FFB347;
+            color: #C9000A;
+        }
+
+        /* ----- MEDIA GALLERY ----- */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        .media-item {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: #F0E0D8;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .media-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .media-item .play-icon {
+            position: absolute;
+            background: rgba(201, 0, 10, 0.7);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+        .media-item .play-icon:hover {
+            background: #E87722;
+        }
+        .media-item .label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background: #C9000A;
+            color: #FFE8E0;
+            padding: 50px 0 20px;
+        }
+        .footer .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer .grid h4 {
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+        }
+        .footer .grid ul li {
+            margin-bottom: 6px;
+            color: #FFE8E0;
+        }
+        .footer .grid ul li a {
+            color: #FFE8E0;
+            transition: 0.3s;
+        }
+        .footer .grid ul li a:hover {
+            color: #FFB347;
+        }
+        .footer .social {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .footer .social a {
+            color: #FFE8E0;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+        .footer .social a:hover {
+            color: #FFB347;
+        }
+        .footer .copyright {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #FFC8B8;
+        }
+
+        /* ----- MOBILE RESPONSIVE ----- */
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 16px 0;
+                gap: 10px;
+                border-top: 1px solid #F0E0D8;
+                margin-top: 12px;
+            }
+            .main-nav.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .hero-slider {
+                height: 400px;
+            }
+            .hero-slider .slide .text h2 {
+                font-size: 2rem;
+            }
+            .subscribe-section .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .subscribe-section .form {
+                justify-content: center;
+            }
+            .logo .logo-text .brand {
+                font-size: 1.4rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .top-bar .container {
+                justify-content: center;
+            }
+            .top-bar .nav-menu {
+                justify-content: center;
+                gap: 12px;
+            }
+            .hero-slider {
+                height: 350px;
+            }
+            .hero-slider .slide .text h2 {
+                font-size: 1.5rem;
+            }
+            .hero-slider .slide .text p {
+                font-size: 0.95rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .logo .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            .logo .logo-text .brand {
+                font-size: 1.2rem;
+            }
+            .logo .logo-text .tagline {
+                font-size: 0.7rem;
+            }
+            .media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .py-30 { padding: 30px 0; }
+        .mb-30 { margin-bottom: 30px; }
+        .mt-20 { margin-top: 20px; }
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body>
+
+<!-- TOP UTILITY BAR -->
+<div class="top-bar">
+    <div class="container">
+        <div class="search-form">
+            <input type="text" placeholder="Search...">
+            <button><i class="fa fa-search"></i></button>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#">Alumni</a></li>
+            <li><a href="#">PTA</a></li>
+            <li><a href="#">Staff Mail</a></li>
+            <li><a href="#">GMC</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">IT Support</a></li>
+            <li><a href="#">Recruitment</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="./images/learning lad logo.jpg" alt="Learning Lad" class="logo-image">
+            <div class="logo-text">
+                <span class="brand">Learning Lad</span>
+                <span class="tagline">Montessori and High</span>
+            </div>
+        </a>
+        <div class="mobile-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+            <i class="fa fa-bars"></i>
+        </div>
+        <ul class="main-nav" id="mainNav">
+            <li><a href="home.html">Home</a></li>
+            <li class="has-dropdown">
+                <a href="#">About <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="about.html">History</a></li>
+                    <li><a href="leader.html">Leadership Team</a></li>
+                    <li><a href="executive.html">Executive Director</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Heads of School <i class="fa fa-angle-right"></i></a>
+                        <ul class="nested-dropdown">
+                            <li><a href="head-of-school-V.I-campus.html">Head of School V.I Campus</a></li>
+                            <li><a href="head-of-school-ikorodu-campus.html">Head of School Ikorodu Campus</a></li>
+                            <li><a href="head-of-school-ikoyi-campus.html">Head of School Ikoyi Campus</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="vision-mission-core Values.html">Vision | Mission | Core Values</a></li>
+                    <li><a href="#">School song and prayer</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Accreditation &amp; Affiliation</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Admissions <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="why-choose-us.html">Why Learning Lad?</a></li>
+                    <li><a href="admission-procedure.html">Admissions Procedure</a></li>
+                    <li><a href="tuition.html">Tuition &amp; Payment</a></li>
+                    <li><a href="#">Entrance Examination</a></li>
+                    <li><a href="#">Scholarship</a></li>
+                    <li><a href="#">Application Form</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Academics <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#">Key Dates</a></li>
+                    <li><a href="our-curriculum.html">Our Curriculum</a></li>
+                    <li><a href="creche.html">Creche</a></li>
+                    <li><a href="#">Pre School</a></li>
+                    <li><a href="#">Elementary</a></li>
+                    <li><a href="secondary-school.html">Secondary School</a></li>
+                    <li><a href="#">Sixth Form Programme</a></li>
+                    <li><a href="#">IB Diploma Programme</a></li>
+                    <li><a href="#">SAT</a></li>
+                    <li><a href="#">Learning Support</a></li>
+                    <li><a href="year-group-description.html">Year Group Description</a></li>
+                    <li><a href="e-learning.html">E-Learning</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Electives</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Downloadables</a></li>
+                </ul>
+            </li>
+            <li><a href="boarding.html">Boarding</a></li>
+            <li><a href="news and events.html">News &amp; Events</a></li>
+            <li class="has-dropdown">
+                <a href="#">Pay Fees <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="school-fees.html">School Fees</a></li>
+                    <li><a href="summer-school.html">Summer School</a></li>
+                    <li><a href="#">Kanu Football Camp</a></li>
+                    <li><a href="#">Other Payments</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<!-- HERO SLIDER - FULL BACKGROUND IMAGES -->
+<section class="hero-slider">
+    <!-- Slide 1 -->
+    <div class="slide active" style="background-image: url('https://www.greenspringsschool.com/wp-content/uploads/2018/01/Preschool.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="slide-content">
+                <div class="text">
+                    <h2>Give your child a great head start in life.</h2>
+                    <p>Every child deserves a quality and well-rounded education in their formative years.</p>
+                    <a href="#" class="btn">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide" style="background-image: url('https://www.greenspringsschool.com/wp-content/uploads/2018/02/Elementary2.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="slide-content">
+                <div class="text">
+                    <h2>We've Got You Covered All Through Your Child's Formative Years.</h2>
+                    <p>Every child deserves a quality and well-rounded education in their Elementary years.</p>
+                    <a href="#" class="btn">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide" style="background-image: url('./images/slieshow\ 3.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="slide-content">
+                <div class="text">
+                    <h2>Our future leaders deserve a well-rounded education.</h2>
+                    <p>Every child needs a quality and well-rounded education to become a responsible global citizen.</p>
+                    <a href="#" class="btn">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 4 -->
+    <div class="slide" style="background-image: url('./images/slieshow\ 4.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="slide-content">
+                <div class="text">
+                    <h2>The right pathway to top universities around the world.</h2>
+                    <p>Our teachers are well-trained, 21st-century professionals and certified IB examiners.</p>
+                    <a href="#" class="btn">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 5 -->
+    <div class="slide" style="background-image: url('./images/slieshow\ 5.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="slide-content">
+                <div class="text">
+                    <h2>2025/26 Scholarship Entrance Examination</h2>
+                    <p>Prepare your child for a bright future. Apply for our Year 7 (JSS 1) and IB Diploma (Sixth-Form) scholarship examination.</p>
+                    <a href="#" class="btn">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slide 6 -->
+    <div class="slide" style="background-image: url('./images/slieshow\ 6.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="slide-content">
+                <div class="text">
+                    <h2>Scholarship Exams Now Open for 2026/2027</h2>
+                    <p>Open to Year 7(JS1), Year 10 (SS1) and the IB Diploma program in our Sixth form.</p>
+                    <a href="#" class="btn">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="controls">
+        <button id="prevSlide"><i class="fa fa-chevron-left"></i></button>
+        <button id="nextSlide"><i class="fa fa-chevron-right"></i></button>
+    </div>
+</section>
+
+<!-- APPLY FOR ADMISSION CTA -->
+<section style="background: #C9000A; padding: 40px 0; border-top: 4px solid #E87722;">
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 30px; color: #fff;">
+            <div style="flex: 0 0 200px;">
+                <img src="./images/register.jpg" alt="Apply" style="width:100%; border-radius:8px;">
+            </div>
+            <div style="flex:1;">
+                <h2 style="font-size: 2rem; margin-bottom: 10px; color: #FFFFFF;">Apply for Admission</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9; max-width: 700px; color: #FFE8E0;">We are one of the foremost British international schools in Lagos and Nigeria; we provide a well-rounded education that enables our students to develop vital life skills and excel academically. Here is a summary of our admission procedure.</p>
+                <a href="#" class="btn btn-orange" style="margin-top: 15px; display: inline-block;">Apply Now <i class="fa fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED NEWS -->
+<section class="section-white">
+    <div class="container">
+        <h2 class="section-title">Featured News</h2>
+        <div class="divider"></div>
+        <div class="news-grid">
+            <div class="news-card">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/07/Image-1-768x506.jpg" alt="news">
+                <div class="body">
+                    <h3>A Global Milestone in London!</h3>
+                    <div class="meta"><span><i class="fa fa-clock-o"></i> July 31, 2026</span></div>
+                    <p>What a spectacular way to wrap up the session this July! We are proud to celebrate our students who competed at the prestigious 2026 Young Master Challenge Finals in London and ranked in the Top 30 globally.</p>
+                    <a href="#">read more <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/07/IMG_9735-768x506.jpg" alt="news">
+                <div class="body">
+                    <h3>Expanding Horizons: Hosting Public School Scholarship Examination</h3>
+                    <div class="meta"><span><i class="fa fa-clock-o"></i> July 31, 2026</span></div>
+                    <p>In partnership with the Lagos &amp; Ogun State Ministry of Education, we hosted another Public School Scholarship Examination, a major Corporate Social Responsibility initiative.</p>
+                    <a href="#">read more <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="./images/LL at 40.jpg" alt="news">
+                <div class="body">
+                    <h3>Looking Back: Memories that stay!</h3>
+                    <div class="meta"><span><i class="fa fa-clock-o"></i> July 31, 2026</span></div>
+                    <p>What a year it has been! As we gear up for the final stretch of our 41st anniversary session, looking back from September 2025 to July 2026 feels like flipping through a scrapbook of incredible Milestones &amp; Memories.</p>
+                    <a href="#">read more <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2026/06/IMG_0782-768x506.jpg" alt="news">
+                <div class="body">
+                    <h3>Memories worth USD16BN: Our 2025/2026 IB Superstars</h3>
+                    <div class="meta"><span><i class="fa fa-clock-o"></i> June 30, 2026</span></div>
+                    <p>Talk about finishing the 2025/2026 session with a massive bang! The Learning Lad IB Diploma Programme graduating class secured a staggering total of over $16 million in scholarships.</p>
+                    <a href="#">read more <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BE THE FIRST TO KNOW - SUBSCRIBE -->
+<section class="subscribe-section">
+    <div class="container">
+        <div class="text">
+            <h2>Be the first to know</h2>
+            <p>Subscribe to our newsletter to receive news and updates.</p>
+        </div>
+        <div class="form">
+            <input type="email" placeholder="Email address">
+            <button type="submit">Subscribe</button>
+        </div>
+    </div>
+</section>
+
+<!-- LEADING BRITISH INTERNATIONAL SCHOOL -->
+<section class="section-light">
+    <div class="container">
+        <h2 class="section-title">Leading British International School in Lagos &amp; Nigeria</h2>
+        <div class="divider"></div>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <p style="text-align: center; font-size: 1.05rem; color: #333333; margin-bottom: 16px;">Learning Lad was established in January 1985. As a result of our rich curriculum and the excellent academic performance of our students over the years, our school has become one of the most sought-after international schools in Lagos and all over Nigeria.</p>
+            <p style="text-align: center; font-size: 1.05rem; color: #333333; margin-bottom: 16px;">At Learning Lad, we understand how boys and girls grow and learn. Therefore, we use a modern curriculum that makes learning easy for our students. Furthermore, all our teachers are certified, and our classes are equipped with state-of-art learning facilities.</p>
+            <p style="text-align: center; font-size: 1.05rem; color: #333333; margin-bottom: 16px;">Although we are one of the few British international schools in Nigeria that strictly run a British curriculum, we are proudly Nigerians. While we train our students to become global citizens, we celebrate the values and heritage of Nigeria.</p>
+            <p style="text-align: center; font-size: 1.05rem; color: #333333;">We adopt the <strong style="color:#C9000A;">Montessori Method</strong> in our Preschool; the <strong style="color:#C9000A;">International Primary Curriculum (IPC)</strong> in our Elementary School; the <strong style="color:#C9000A;">National British Curriculum</strong>, which is designed to effectively prepare our students for the International General Certificate of Secondary Education (IGCSE) examination, in our Secondary School; and the <strong style="color:#C9000A;">International Baccalaureate Diploma Programme</strong> in our Sixth Form.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ACADEMICS OVERVIEW -->
+<section class="section-white">
+    <div class="container">
+        <div class="academics-grid">
+            <div class="academic-card">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2018/02/Anthony-Preschool-8.jpg" alt="Preschool">
+                <div class="info">
+                    <h4>Preschool</h4>
+                    <p>The Pre-school section of Learning Lad is a specially-prepared Montessori environment, laying a solid foundation for children aged 18 months to 5+.</p>
+                    <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="academic-card">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2018/02/Lekki-Elementary-7.jpg" alt="Elementary">
+                <div class="info">
+                    <h4>Elementary</h4>
+                    <p>The primary formative years are set to achieve a secure level of functionality and effectiveness in the core skills which includes: reading, oral and written communication.</p>
+                    <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="academic-card">
+                <img src="./images/secondary.jpg" alt="Secondary">
+                <div class="info">
+                    <h4>Secondary</h4>
+                    <p>In the first year of the secondary school (our Y7) the scope of the curriculum widens to include a broader subject base. The five years of secondary education culminate in the IGCSE.</p>
+                    <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="academic-card">
+                <img src="./images/ib diploma.jpg" alt="IB">
+                <div class="info">
+                    <h4>IB Diploma Programme</h4>
+                    <p>The Sixth Form at Learning Lad admits motivated and committed students with minimum of 5 credits in their O' Levels (GCSEs, IGCSEs or WASSCE).</p>
+                    <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="#" class="btn btn-outline">Download E-Brochure</a>
+        </div>
+    </div>
+</section>
+
+<!-- REDEFINING EDUCATION -->
+<section class="section-light">
+    <div class="container">
+        <h2 class="section-title">Redefining Education in Africa</h2>
+        <div class="divider"></div>
+        <div style="max-width: 900px; margin: 0 auto 30px;">
+            <p style="text-align: center; font-size: 1.05rem; color: #333333;">Our mission is to lead holistic, inclusive, innovative world-class education in Africa. For this reason, we have adopted different approaches and tools that make learning enjoyable for our students. These approaches and tools include the use of activity-based learning, virtual learning environment, among others. In addition to that, we are the <strong style="color:#C9000A;">first Thinking School in Nigeria</strong>, and we encourage our students to be critical thinkers.</p>
+            <p style="text-align: center; font-size: 1.05rem; color: #333333;">Our twenty-first-century learning environment and unique teaching approach make us one of the tested-and-trusted British international schools in Lagos and Nigeria.</p>
+        </div>
+        <div class="redefine-grid">
+            <div class="redefine-card">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2017/11/Lekki-Elementary-4.jpg" alt="Activity Based Learning">
+                <div class="info">
+                    <h4>Activity Based Learning</h4>
+                    <p>Educational research into brain development and learning has made us understand that the more senses of the child involved in the learning process, the deeper the understanding of what is taught.</p>
+                    <a href="#">read more <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="redefine-card">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2017/11/Lekki-Elementary-11-1.jpg" alt="Virtual Learning">
+                <div class="info">
+                    <h4>Virtual Learning Environment</h4>
+                    <p>VLE is a great tool which will change and enhance the delivery and assessment of education forever. What we are seeing now is only scratching the surface.</p>
+                    <a href="#">read more <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="redefine-card">
+                <img src="./images/thinking school.jpg" alt="Thinking School">
+                <div class="info">
+                    <h4>Thinking School</h4>
+                    <p>Here at Learning Lad, students are encouraged to think 'outside the box.' This will enable them to deconstruct their own learning process and find out what works best for them.</p>
+                    <a href="#">read more <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="redefine-card">
+                <img src="./images/education.jpg" alt="Well Rounded">
+                <div class="info">
+                    <h4>Well Rounded Education</h4>
+                    <p>Here is the verdict! Your child needs a WELL-ROUNDED EDUCATION. A child that has a well-rounded education is equipped with relevant skills to be able to manage complex situations.</p>
+                    <a href="#">read more <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OUR SCHOOL STATS -->
+<section class="stats-section">
+    <div class="container">
+        <h2 class="section-title section-title-white">Our School</h2>
+        <div class="divider divider-white"></div>
+        <p style="text-align: center; color: #FFE8E0; margin-bottom: 40px; font-size: 1.1rem;">A glance at our school</p>
+        <div class="stats-grid">
+            <div class="stat"><h3>275</h3><p>Certified Teachers</p></div>
+            <div class="stat"><h3>3</h3><p>Campuses</p></div>
+            <div class="stat"><h3>100%</h3><p>Passing to Universities</p></div>
+            <div class="stat"><h3>41</h3><p>Years Old</p></div>
+            <div class="stat"><h3>40,690</h3><p>Students Enrolled to date</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <div class="container">
+        <h2 class="section-title">What our parents say</h2>
+        <div class="divider"></div>
+        <div class="testimonial-grid">
+            <div class="testimonial-item">
+                <p>"The teachers are attentive to the students and have their best interest at heart."</p>
+                <div class="author">Bolanle Adeoti</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"I appreciate the effort the school is putting in to build the children in all areas."</p>
+                <div class="author">Joy Ayo-John</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"Learning Lad is helping to educate a total child."</p>
+                <div class="author">Adekunle Awomuti</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"The idea of the house point is fantastic."</p>
+                <div class="author">Oluwagbemiga Adaramaja</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"Child centredness cannot be over emphasised. I love that the school focuses on this. Please keep it up."</p>
+                <div class="author">Folashade Ogunrinola</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"I like the way the students are being encouraged to be confident in themselves. It helps good development."</p>
+                <div class="author">Mrs. Okpere</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"Fantastic school content! Super happy with teachers!"</p>
+                <div class="author">Kendra Njoku</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"The school remains number one in providing quality education. I am very proud as a parent because I can see my child making steady progress in all areas."</p>
+                <div class="author">Mrs. Oketona</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOLLOW US ON FACEBOOK -->
+<section class="section-white">
+    <div class="container">
+        <h2 class="section-title" style="color: #C9000A;">Follow us on Facebook</h2>
+        <div class="divider"></div>
+        <div style="text-align: center; padding: 30px 0;">
+            <div style="background: #FFFFFF; border-radius: 12px; padding: 40px; max-width: 600px; margin: 0 auto; border: 1px solid #F0E0D8;">
+                <i class="fa fa-facebook-square" style="font-size: 4rem; color: #C9000A;"></i>
+                <p style="margin: 15px 0; color: #333333;">Stay connected with us on Facebook for the latest updates, events, and news.</p>
+                <a href="#" class="btn" style="background: #C9000A; border-color: #C9000A;">Visit Our Page</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MEDIA GALLERY -->
+<section class="section-light">
+    <div class="container">
+        <h2 class="section-title">Media</h2>
+        <div class="divider"></div>
+        <div class="media-grid">
+            <div class="media-item">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2018/03/library2-320x320.jpg" alt="Library">
+            </div>
+            <div class="media-item">
+                <img src="https://www.greenspringsschool.com/wp-content/uploads/2018/03/creche2-320x320.jpg" alt="Creche">
+            </div>
+            <div class="media-item" style="background: #C9000A;">
+                <i class="fa fa-play" style="color: #fff; font-size: 2rem;"></i>
+                <span class="label">Video</span>
+            </div>
+            <div class="media-item" style="background: #C9000A;">
+                <i class="fa fa-play" style="color: #fff; font-size: 2rem;"></i>
+                <span class="label">Video</span>
+            </div>
+            <div class="media-item" style="background: #C9000A;">
+                <i class="fa fa-play" style="color: #fff; font-size: 2rem;"></i>
+                <span class="label">Video</span>
+            </div>
+            <div class="media-item" style="background: #C9000A;">
+                <i class="fa fa-play" style="color: #fff; font-size: 2rem;"></i>
+                <span class="label">Video</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="grid">
+            <div>
+                <h4>Ikorodu Campus</h4>
+                <ul>
+                    <li>32, Olatunde Ayoola Avenue, Ikorodu, Lagos, Nigeria.</li>
+                    <li>+234 908 717 1700, 2349169188041</li>
+                    <li>P O Box 4801K Ikeja Headquarters, Ikeja, Lagos.</li>
+                    <li><a href="mailto:info.anthony@learninglad.com">info.anthony@learninglad.com</a></li>
+                    <li>Admission Tel: +234 916 918 8041</li>
+                </ul>
+            </div>
+            <div>
+                <h4>V.I Campus</h4>
+                <ul>
+                    <li>V.I (After Crown Estate), Awoyaya, Lagos, Nigeria.</li>
+                    <li>+2349129534036</li>
+                    <li>P O Box 4801K Ikeja Headquarters, Ikeja, Lagos.</li>
+                    <li><a href="mailto:info.lekki@learninglad.com">info.lekki@learninglad.com</a></li>
+                    <li>Admission Tel: +234 912 953 4036</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ikoyi Campus</h4>
+                <ul>
+                    <li>12a, Reeve road, off Glover road, Ikoyi, Lagos, Nigeria.</li>
+                    <li>+234 902 090 7488</li>
+                    <li>P O Box 4801K Ikeja Headquarters, Ikeja, Lagos.</li>
+                    <li><a href="mailto:info.ikoyi@learninglad.com">info.ikoyi@learninglad.com</a></li>
+                    <li>Admission Tel: +234 902 090 7488</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Anthos House</h4>
+                <ul>
+                    <li>+234 708 429 0589</li>
+                    <li><a href="mailto:info.anthoshouse@learninglad.com">info.anthoshouse@learninglad.com</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Stay Connected</h4>
+                <div class="social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright © 2024 All Rights Reserved. Learning Lad Educational Services Limited Site Powered By JenoxIS
+        </div>
+    </div>
+</footer>
+
+<!-- SLIDER SCRIPT -->
+<script>
+    (function() {
+        const slides = document.querySelectorAll('.hero-slider .slide');
+        let current = 0;
+        const total = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === index);
+            });
+        }
+
+        document.getElementById('nextSlide').addEventListener('click', function() {
+            current = (current + 1) % total;
+            showSlide(current);
+        });
+        document.getElementById('prevSlide').addEventListener('click', function() {
+            current = (current - 1 + total) % total;
+            showSlide(current);
+        });
+
+        // Auto advance
+        setInterval(function() {
+            current = (current + 1) % total;
+            showSlide(current);
+        }, 6000);
+    })();
+</script>
+
+</body>
+</html>
